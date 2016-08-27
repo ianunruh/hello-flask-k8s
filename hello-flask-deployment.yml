@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hello-flask
+  labels:
+    app: hello-flask
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: hello-flask
+    spec:
+      containers:
+      - name: hello-flask
+        image: ianunruh/hello-flask:v1
+        args: [
+          "gunicorn",
+          "-w", "2",
+          "-b", ":8080",
+          "--statsd-host=localhost:8125",
+          "app:app"
+        ]
+        ports:
+        - containerPort: 8080
+      - name: telegraf
+        image: telegraf
+        ports:
+        - name: statsd
+          containerPort: 8125
+          protocol: UDP
+        volumeMounts:
+        - name: config
+          mountPath: /etc/telegraf
+      volumes:
+      - name: config
+        configMap:
+          name: telegraf-config
