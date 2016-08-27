@@ -77,6 +77,7 @@ kubectl delete deployments/influxdb
 kubectl delete svc/hello-flask
 kubectl delete svc/grafana
 kubectl delete svc/influxdb
+kubectl delete configmap/telegraf-config
 
 gcloud compute disks delete influxdb-1
 gcloud compute disks delete grafana-1
