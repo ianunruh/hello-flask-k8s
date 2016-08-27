@@ -49,6 +49,14 @@ kubectl create -f grafana-deployment.yml
 
 ### Example Flask app
 
+Create a [ConfigMap](http://kubernetes.io/docs/user-guide/configmap/) for Telegraf to use.
+
+```
+kubectl create configmap telegraf-config --from-file=telegraf.conf
+```
+
+Now deploy the Flask app.
+
 ```bash
 kubectl create -f hello-flask-service.yml
 kubectl create -f hello-flask-deployment.yml
