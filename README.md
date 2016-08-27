@@ -2,6 +2,8 @@
 
 Run a Flask app on Kubernetes, monitored by Telegraf/InfluxDB/Grafana.
 
+![Architecture](arch-diagram.png)
+
 ## Usage
 
 This example assumes you're running Kubernetes on [GKE](https://cloud.google.com/container-engine/).
